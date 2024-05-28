@@ -59,12 +59,17 @@ This guide outlines the steps to install Kafka on Ubuntu, including both native 
     sudo systemctl daemon-reload
     ```
 
-8. **Start Kafka Service:**
+8. **Start Zookeeper Service:**
+    ```bash
+    sudo systemctl start zookeeper
+    ```
+
+9. **Start Kafka Service:**
     ```bash
     sudo systemctl start kafka
     ```
 
-9. **Check Kafka Service Status:**
+10. **Check Kafka Service Status:**
     ```bash
     sudo systemctl status kafka
     ```
