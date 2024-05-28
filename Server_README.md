@@ -29,5 +29,6 @@ To access the VPS (Virtual Private Server):
 
 1. **Navigate to Download Folder:**
    ```bash
-   cd /path/to/Download
-
+   cd Downloads
+   ssh -i test-key.pem ubuntu@3.1.23.120
+   ```
