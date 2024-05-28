@@ -5,46 +5,18 @@ This project aims to integrate Prometheus, Grafana, and Node Exporter to monitor
 ## Installation
 
 1. Install the `prometheus-net` package to your .NET project:
-    ```bash
-    dotnet add package prometheus-net
-    ```
+
+   ```bash
+   dotnet add package prometheus-net
+   ```
 
 2. Add the necessary function to your project for exposing metrics.
 
 3. Write the required Docker Compose files for running Prometheus, Grafana, and Node Exporter.
 
-4. Install Node Exporter using Docker Compose:
-    ```bash
-    docker-compose up -d
-    ```
-
-## Accessing Prometheus
-
-- Access Prometheus using: [http://localhost:9090](http://localhost:9090)
-- Navigate to `Status` -> `Targets` to view targets and their health.
-
-## Accessing Grafana
-
-- Access Grafana using: [http://localhost:3000](http://localhost:3000)
-- Add Prometheus as a new data source in Grafana.
-- Create a new dashboard and specify the Prometheus URL to connect Grafana with Prometheus.
-- Visualize metrics and create dashboards to monitor your application's performance.
-
-## Additional Notes
-
-- Ensure that all services are up and running before accessing Prometheus and Grafana.
-- Customize Grafana dashboards and alerts as per your monitoring requirements.
-
-## Troubleshooting
-
-- If encountering issues, refer to the documentation of Prometheus, Grafana, and Node Exporter for troubleshooting steps.
-
-
-This repository contains a Docker Compose setup for monitoring services using Prometheus, Grafana, Node Exporter, and a custom Dotnet Application.
-
 ## Docker Compose Setup
 
-```yaml
+````yaml
 version: "3"
 
 services:
@@ -121,3 +93,52 @@ scrape_configs:
   - job_name: 'node-exporter'
     static_configs:
       - targets: ['node-exporter:9100']
+
+## Docker Compose Setup for Node Exporter
+
+```yaml
+version: '3.8'
+
+services:
+  node_exporter:
+    image: prom/node-exporter:latest
+    container_name: node_exporter
+    ports:
+      - "9100:9100"
+    networks:
+      - monitoring
+    restart: unless-stopped
+
+networks:
+  monitoring:
+    driver: bridge
+4. Install Node Exporter using Docker Compose:
+    ```bash
+    docker-compose up -d
+    ```
+
+## Accessing Prometheus
+
+- Access Prometheus using: [http://localhost:9090](http://localhost:9090)
+- Navigate to `Status` -> `Targets` to view targets and their health.
+
+## Accessing Grafana
+
+- Access Grafana using: [http://localhost:3000](http://localhost:3000)
+- Add Prometheus as a new data source in Grafana.
+- Create a new dashboard and specify the Prometheus URL to connect Grafana with Prometheus.
+- Visualize metrics and create dashboards to monitor your application's performance.
+
+## Additional Notes
+
+- Ensure that all services are up and running before accessing Prometheus and Grafana.
+- Customize Grafana dashboards and alerts as per your monitoring requirements.
+
+## Troubleshooting
+
+- If encountering issues, refer to the documentation of Prometheus, Grafana, and Node Exporter for troubleshooting steps.
+
+
+This repository contains a Docker Compose setup for monitoring services using Prometheus, Grafana, Node Exporter, and a custom Dotnet Application.
+
+````
