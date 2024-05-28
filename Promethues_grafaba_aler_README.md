@@ -16,7 +16,7 @@ This project aims to integrate Prometheus, Grafana, and Node Exporter to monitor
 
 ## Docker Compose Setup
 
-````yaml
+```yaml
 version: "3"
 
 services:
@@ -60,16 +60,16 @@ services:
       - /sys:/host/sys:ro
       - /:/rootfs:ro
     command:
-      - '--path.procfs=/host/proc'
-      - '--path.sysfs=/host/sys'
-      - '--path.rootfs=/rootfs'
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--path.rootfs=/rootfs"
 
 networks:
   monitoring:
 
 volumes:
   grafana-data:
-
+```
 
 # Docker Services Setup for Monitoring
 
@@ -90,14 +90,15 @@ scrape_configs:
     static_configs:
       - targets: ["172.17.0.1:80"]
 
-  - job_name: 'node-exporter'
+  - job_name: "node-exporter"
     static_configs:
-      - targets: ['node-exporter:9100']
+      - targets: ["node-exporter:9100"]
+```
 
 ## Docker Compose Setup for Node Exporter
 
 ```yaml
-version: '3.8'
+version: "3.8"
 
 services:
   node_exporter:
@@ -112,10 +113,7 @@ services:
 networks:
   monitoring:
     driver: bridge
-4. Install Node Exporter using Docker Compose:
-    ```bash
-    docker-compose up -d
-    ```
+```
 
 ## Accessing Prometheus
 
@@ -138,7 +136,8 @@ networks:
 
 - If encountering issues, refer to the documentation of Prometheus, Grafana, and Node Exporter for troubleshooting steps.
 
-
 This repository contains a Docker Compose setup for monitoring services using Prometheus, Grafana, Node Exporter, and a custom Dotnet Application.
 
-````
+```
+
+```
