@@ -1,12 +1,12 @@
 # Redis Installation Guide
 
-This guide outlines the steps to install and configure Redis on Ubuntu.
+This guide outlines the steps to install and configure Redis on Ubuntu, including both native installation and using Docker Compose.
 
 ## Prerequisites
 - Ubuntu server
 - Access to the server via SSH
 
-## Installation Steps
+## Installation Steps (Native)
 
 1. **Install Required Packages:**
     ```bash
@@ -43,19 +43,49 @@ This guide outlines the steps to install and configure Redis on Ubuntu.
     sudo systemctl enable redis-server
     ```
 
+## Installation Steps (Docker Compose)
+
+1. **Install Docker:**
+    ```bash
+    # Install Docker
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    sudo usermod -aG docker $USER
+    ```
+
+2. **Install Docker Compose:**
+    ```bash
+    # Install Docker Compose
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    ```
+
+3. **Create a Docker Compose file (docker-compose.yml):**
+    ```yaml
+    version: '3'
+
+    services:
+      redis:
+        image: redis:latest
+        container_name: redis_server
+        restart: always
+        ports:
+          - "6379:6379"
+    ```
+
+4. **Start Redis with Docker Compose:**
+    ```bash
+    docker-compose up -d
+    ```
+
+5. **Check Redis Container Status:**
+    ```bash
+    docker ps
+    ```
+
 ## Verifying Installation
 
-1. **Check Redis Status:**
-    ```bash
-    sudo systemctl status redis-server
-    ```
-
-2. **Test Redis Connection:**
-    ```bash
-    redis-cli ping
-    ```
-
-    If Redis is running, you should see the response "PONG".
+- After running the installation commands, you can verify that Redis is installed and running by checking its service status or Docker container status.
 
 ## Additional Configuration
 
@@ -66,4 +96,5 @@ This guide outlines the steps to install and configure Redis on Ubuntu.
 ## Usage
 
 - Once Redis is installed and running, you can use it as a caching or messaging system for your applications.
+
 
