@@ -71,7 +71,7 @@ volumes:
   grafana-data:
 ```
 
-# Docker Services Setup for Monitoring
+# Promethues Setup for Monitoring
 
 This repository contains a Docker Compose setup for monitoring services using Prometheus, Grafana, Node Exporter, and a custom Dotnet Application.
 
