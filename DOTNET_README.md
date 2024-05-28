@@ -69,7 +69,37 @@ This guide outlines the steps to deploy your .NET web application using the dotn
 10. **Run the Application on the Server:**
     ```bash
     dotnet MyWebApp.dll
+## Deployment Steps (Docker)
+
+1. **Update Ubuntu Packages:**
+    ```bash
+    sudo apt-get update
     ```
+
+2. **Install Docker:**
+    ```bash
+    sudo apt install docker.io
+    ```
+
+3. **Grant Docker Permissions:**
+    ```bash
+    sudo chown $USER /var/run/docker.sock
+    ```
+
+4. **Build Docker Image:**
+    ```bash
+    docker build -t dotnet .
+    ```
+
+5. **Tag Docker Image:**
+    ```bash
+    docker tag dotnet rahat17/dotnet
+    ```
+
+6. **Push Docker Image to Docker Hub:**
+    ```bash
+    docker login -u rahat17
+    docker push rahat17/dotnet    ```
 
 ## Additional Notes
 
