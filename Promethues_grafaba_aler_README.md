@@ -57,3 +57,27 @@ networks:
 
 volumes:
   grafana-data:
+
+
+# Docker Services Setup for Monitoring
+
+This repository contains a Docker Compose setup for monitoring services using Prometheus, Grafana, Node Exporter, and a custom Dotnet Application.
+
+## Prometheus Configuration
+
+```yaml
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+
+scrape_configs:
+  - job_name: "dotnet_application"
+    honor_timestamps: true
+    metrics_path: "/metrics"
+    scheme: "http"
+    static_configs:
+      - targets: ["172.17.0.1:80"]
+
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
