@@ -100,7 +100,20 @@ This guide outlines the steps to deploy your .NET web application using the dotn
     ```bash
     docker login -u rahat17
     docker push rahat17/dotnet    ```
+7. **View Docker Images:**
+    ```bash
+    docker images
+    ```
 
+8. **Run Docker Container:**
+    ```bash
+    docker run -d -p 5002:80 rahat17/dotnet
+    ```
+
+9. **View Running Containers:**
+    ```bash
+    docker ps
+    ```
 ## Additional Notes
 
 - Ensure that necessary ports are open on your server to allow incoming traffic to your web application.
